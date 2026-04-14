@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduTrack | Smarter Academic Project Tracking</title>
+  <meta name="description" content="EduTrack helps students, teachers, and directors manage projects, progress, and outcomes in one simple platform.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f6f8fc;
+      --surface: #ffffff;
+      --ink: #111827;
+      --muted: #5b6474;
+      --line: #e6ebf2;
+      --brand: #0f62fe;
+      --brand-2: #22c55e;
+      --accent: #f97316;
+      --shadow: 0 20px 45px rgba(10, 28, 69, 0.12);
+      --radius: 16px;
+      --max: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+
+    body {
+      font-family: Manrope, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background:
+        radial-gradient(circle at 95% 5%, rgba(34, 197, 94, 0.14), transparent 35%),
+        radial-gradient(circle at 5% 20%, rgba(15, 98, 254, 0.13), transparent 40%),
+        var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(246, 248, 252, 0.9);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.85rem 0;
+    }
+
+    .logo {
+      font-family: Sora, sans-serif;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      font-size: 1.3rem;
+    }
+
+    .logo span { color: var(--brand); }
+
+    .nav-links {
+      display: flex;
+      gap: 1.1rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 12px;
+      padding: 0.7rem 1rem;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 0.93rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      color: #fff;
+      background: linear-gradient(90deg, var(--brand), #3b82f6);
+      box-shadow: 0 8px 25px rgba(15, 98, 254, 0.35);
+    }
+    .btn-outline {
+      color: var(--ink);
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .hero {
+      padding: 4.5rem 0 2.5rem;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid #d5def0;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #1f3f7a;
+      background: #eef4ff;
+    }
+
+    h1 {
+      font-family: Sora, sans-serif;
+      font-size: clamp(2rem, 4.8vw, 3.5rem);
+      line-height: 1.1;
+      margin: 0.8rem 0 1rem;
+      letter-spacing: -0.03em;
+    }
+
+    .lead {
+      color: var(--muted);
+      max-width: 60ch;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+    .hero-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1rem;
+    }
+
+    .stat {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+    }
+
+    .stat div {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 0.9rem;
+      background: #fbfdff;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.2rem;
+      font-family: Sora, sans-serif;
+    }
+
+    section { padding: 2.5rem 0; }
+    h2 {
+      font-family: Sora, sans-serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      margin: 0 0 0.5rem;
+      letter-spacing: -0.02em;
+    }
+    .section-sub { color: var(--muted); margin-top: 0; }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.1rem;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 0.4rem;
+      font-family: Sora, sans-serif;
+      font-size: 1.05rem;
+    }
+
+    .steps {
+      display: grid;
+      gap: 0.7rem;
+      margin-top: 1rem;
+    }
+
+    .step {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 0.9rem 1rem;
+      display: flex;
+      gap: 0.8rem;
+      align-items: flex-start;
+    }
+
+    .step-num {
+      width: 1.7rem;
+      height: 1.7rem;
+      border-radius: 50%;
+      background: #e8f0ff;
+      color: #1a4ab4;
+      font-size: 0.85rem;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+    }
+
+    .cta {
+      background: linear-gradient(135deg, #0f62fe, #1d4ed8 60%, #2563eb);
+      color: #fff;
+      border-radius: 20px;
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      align-items: center;
+      box-shadow: var(--shadow);
+    }
+
+    .cta p { margin: 0.3rem 0 0; opacity: 0.95; }
+    .cta .btn-outline { border-color: rgba(255, 255, 255, 0.35); background: transparent; color: #fff; }
+
+    footer {
+      padding: 1.4rem 0 2rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 920px) {
+      .hero { grid-template-columns: 1fr; }
+      .grid-3 { grid-template-columns: 1fr 1fr; }
+      .cta { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links a.hide-sm { display: none; }
+      .grid-3 { grid-template-columns: 1fr; }
+      .hero { padding-top: 3.2rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-wrap">
+      <div class="logo">Edu<span>Track</span></div>
+      <nav class="nav-links">
+        <a class="hide-sm" href="#features">Features</a>
+        <a class="hide-sm" href="#how">How It Works</a>
+        <a href="/login" class="btn btn-outline">Sign In</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <span class="badge">Project Management for Campus Teams</span>
+        <h1>Track Student Projects Without Spreadsheets</h1>
+        <p class="lead">
+          One platform for submissions, reviews, deadlines, analytics, and notifications.
+          Built for students, teachers, and directors.
+        </p>
+        <div class="hero-actions">
+          <a href="/login" class="btn btn-primary">Open EduTrack</a>
+          <a href="#features" class="btn btn-outline">Explore Features</a>
+        </div>
+      </div>
+      <aside class="hero-card">
+        <h3 style="margin:0;font-family:Sora,sans-serif;">Live Snapshot</h3>
+        <p style="margin:0.3rem 0 0;color:var(--muted);">A quick view of what teams monitor every day.</p>
+        <div class="stat">
+          <div><strong>92%</strong><span>On-time submissions</span></div>
+          <div><strong>148</strong><span>Active projects</span></div>
+          <div><strong>31</strong><span>Pending reviews</span></div>
+          <div><strong>9</strong><span>Departments connected</span></div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="features">
+      <h2>Everything in One Workflow</h2>
+      <p class="section-sub">No context switching between sheets, chat, and email threads.</p>
+      <div class="grid-3">
+        <article class="card">
+          <h3>Role-based Dashboards</h3>
+          <p>Different views for students, teachers, and directors with focused actions and data.</p>
+        </article>
+        <article class="card">
+          <h3>Submission Tracking</h3>
+          <p>Monitor status from assigned to submitted to reviewed with complete history.</p>
+        </article>
+        <article class="card">
+          <h3>Performance Analytics</h3>
+          <p>Measure progress, identify blockers, and compare outcomes across cohorts.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="how">
+      <h2>How EduTrack Works</h2>
+      <p class="section-sub">Simple process from assignment to completion.</p>
+      <div class="steps">
+        <div class="step"><span class="step-num">1</span><div><strong>Create and assign</strong><br>Teachers create projects and assign them to students or groups.</div></div>
+        <div class="step"><span class="step-num">2</span><div><strong>Submit and review</strong><br>Students submit work, teachers review, and feedback is recorded.</div></div>
+        <div class="step"><span class="step-num">3</span><div><strong>Track outcomes</strong><br>Directors monitor completion, quality, and team performance in real time.</div></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="cta">
+        <div>
+          <h2 style="margin:0;color:#fff;">Ready to launch EduTrack?</h2>
+          <p>Sign in and start managing your academic project pipeline today.</p>
+        </div>
+        <div style="display:flex;gap:.7rem;flex-wrap:wrap;">
+          <a href="/login" class="btn btn-outline">Sign In</a>
+          <a href="/register" class="btn btn-primary" style="background:#fff;color:#0f62fe;box-shadow:none;">Get Started</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <span id="year"></span> EduTrack. Built for modern campus operations.
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
