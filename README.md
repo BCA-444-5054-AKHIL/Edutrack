@@ -1,6 +1,7 @@
 # EduTrack
 
 EduTrack is a full-stack education project tracking system with a React/Vite frontend and an Express/Node backend. It supports user authentication, project management, submissions, grading, analytics, leaderboards, badges, notifications, and role-based dashboards.
+ live link - https://edutrack-frontend-tan.vercel.app/landingpage.html
 
 ## Tech stack
 
